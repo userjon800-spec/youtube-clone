@@ -85,17 +85,18 @@ const VideoDetails = () => {
           </Stack>
           {
             <Stack direction="row" flexWrap="wrap" gap={1} mt={2}>
-              {tags.map((tag, index) => (
-                <Typography
-                  key={index}
-                  variant="body2"
-                  color="darkblack"
-                  sx={{ cursor: "pointer" }}
-                  className="types"
-                >
-                  #{tag}
-                </Typography>
-              ))}
+              {tags &&
+                tags.map((tag, index) => (
+                  <Typography
+                    key={index}
+                    variant="body2"
+                    color="darkblack"
+                    sx={{ cursor: "pointer" }}
+                    className="types"
+                  >
+                    #{tag}
+                  </Typography>
+                ))}
             </Stack>
           }
           {description && (
@@ -110,12 +111,12 @@ const VideoDetails = () => {
           )}
         </Box>
         <Box
-          width={{ xs: '100%', md: '25%' }}
-					px={2}
-					py={{ md: 1, xs: 5 }}
-					justifyContent='center'
-					alignItems='center'
-					overflow={'scroll'}
+          width={{ xs: "100%", md: "25%" }}
+          px={2}
+          py={{ md: 1, xs: 5 }}
+          justifyContent="center"
+          alignItems="center"
+          overflow={"scroll"}
           flexDirection={"column"}
           height={"1900px"}
           border={"1px solid #e3e3e3"}
