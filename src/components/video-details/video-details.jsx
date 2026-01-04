@@ -8,7 +8,6 @@ const VideoDetails = () => {
   const [videoDetails, setVideoDetails] = useState(null);
   const [suggestedVideos, setSuggestedVideos] = useState([]);
   const { id } = useParams();
-
   useEffect(() => {
     const getData = async () => {
       try {
@@ -36,9 +35,7 @@ const VideoDetails = () => {
 
   if (!videoDetails) return <Loader />;
   const { snippet, statistics } = videoDetails;
-  const { title, channelTitle, description, channelId, tags, thumbnails } =
-    snippet || {};
-
+  const { title, channelTitle, description, tags, thumbnails } = snippet || {};
   return (
     <Box minHeight={"90vh"} mb={10} p={2}>
       <Box display={"flex"} flexDirection={{ xs: "column", md: "row" }} gap={2}>
@@ -131,6 +128,4 @@ const VideoDetails = () => {
     </Box>
   );
 };
-
 export default VideoDetails;
-// channelId

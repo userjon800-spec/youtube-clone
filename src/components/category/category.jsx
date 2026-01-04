@@ -1,11 +1,10 @@
 import { Stack } from "@mui/material";
 import { category } from "../../constants/index";
 import { colors } from "../../constants/colors";
-
 const Category = ({ selectedCategory, onSelect }) => {
   return (
     <Stack direction="row" sx={{ overflowX: "scroll" }}>
-      {category.map((item) => (
+      {category && category.map((item) => (
         <button
           key={item.name}
           className="category-btn"
@@ -30,5 +29,4 @@ const Category = ({ selectedCategory, onSelect }) => {
     </Stack>
   );
 };
-
 export default Category;

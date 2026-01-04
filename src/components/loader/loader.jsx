@@ -1,5 +1,4 @@
 import { Box, CircularProgress, Stack } from "@mui/material";
-
 const Loader = () => {
   return (
     <Box minHeight={"80vh"}>
@@ -14,5 +13,4 @@ const Loader = () => {
     </Box>
   );
 };
-
 export default Loader;

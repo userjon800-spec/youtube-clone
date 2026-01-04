@@ -33,5 +33,4 @@ const Search = () => {
     </Box>
   );
 };
-
 export default Search;

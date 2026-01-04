@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { ApiService } from "../../service/api-service";
 import ChannelCard from "../channel-card/channel-card";
 import Videos from "../Videos/videos";
-
 const Channel = () => {
   let params = useParams();
   let [channelDetails, setChannelDetails] = useState([]);
@@ -54,5 +53,4 @@ const Channel = () => {
     </Box>
   );
 };
-
 export default Channel;

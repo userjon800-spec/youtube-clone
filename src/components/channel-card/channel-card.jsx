@@ -1,7 +1,6 @@
 import { CheckCircle } from "@mui/icons-material";
 import { Box, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-
 const ChannelCard = ({ video }) => {
   return (
     <Box
@@ -55,5 +54,4 @@ const ChannelCard = ({ video }) => {
     </Box>
   );
 };
-
 export default ChannelCard;
