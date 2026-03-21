@@ -1,71 +1,8 @@
-import { Box, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { Main, Channel, Search, VideoDetails, Navbar } from "../";
 import { Routes, Route } from "react-router-dom";
-import { colors } from "../../constants/colors";
+import { colors, theme } from "../../constants/colors";
 import Error from "../error/error";
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: colors.secondary,
-    },
-    secondary: {
-      main: colors.secondaryLight || "#a14a5a",
-    },
-    background: {
-      default: colors.primary,
-      paper: colors.white,
-    },
-  },
-  typography: {
-    fontFamily: '"Roboto", "Segoe UI", sans-serif',
-    h1: {
-      fontSize: "2.5rem",
-      fontWeight: 700,
-    },
-    h2: {
-      fontSize: "2rem",
-      fontWeight: 700,
-    },
-    h3: {
-      fontSize: "1.75rem",
-      fontWeight: 600,
-    },
-    h4: {
-      fontSize: "1.5rem",
-      fontWeight: 600,
-    },
-    h5: {
-      fontSize: "1.25rem",
-      fontWeight: 600,
-    },
-    h6: {
-      fontSize: "1rem",
-      fontWeight: 600,
-    },
-  },
-  shape: {
-    borderRadius: 8,
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: "none",
-          borderRadius: "30px",
-        },
-      },
-    },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: "16px",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
-        },
-      },
-    },
-  },
-});
-
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>

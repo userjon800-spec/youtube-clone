@@ -20,19 +20,15 @@ import {
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
-
 const VideoCard = ({ video, index }) => {
   const [liked, setLiked] = useState(false);
   const [hovered, setHovered] = useState(false);
-
-  // Video vaqtini formatlash
   const formatDuration = (duration) => {
     if (!duration) return null;
     const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
     const hours = (match[1] || "").replace("H", "");
     const minutes = (match[2] || "").replace("M", "");
     const seconds = (match[3] || "").replace("S", "");
-
     if (hours) {
       return `${hours}:${minutes.padStart(2, "0")}:${seconds.padStart(2, "0")}`;
     }
@@ -41,8 +37,6 @@ const VideoCard = ({ video, index }) => {
     }
     return `0:${seconds.padStart(2, "0")}`;
   };
-
-  // View count formatlash
   const formatViews = (views) => {
     if (!views) return null;
     if (views >= 1000000) {
@@ -53,7 +47,6 @@ const VideoCard = ({ video, index }) => {
     }
     return views;
   };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -82,7 +75,6 @@ const VideoCard = ({ video, index }) => {
           },
         }}
       >
-        {/* Thumbnail qismi */}
         <Link
           to={`/video/${video.id.videoId}`}
           style={{ textDecoration: "none" }}
@@ -99,8 +91,6 @@ const VideoCard = ({ video, index }) => {
                 transform: hovered ? "scale(1.05)" : "scale(1)",
               }}
             />
-
-            {/* Video duration badge */}
             {video?.contentDetails?.duration && (
               <Chip
                 label={formatDuration(video.contentDetails.duration)}
@@ -117,8 +107,6 @@ const VideoCard = ({ video, index }) => {
                 }}
               />
             )}
-
-            {/* Hover effekt */}
             {hovered && (
               <Box
                 sx={{
@@ -144,7 +132,6 @@ const VideoCard = ({ video, index }) => {
             )}
           </Box>
         </Link>
-
         <CardContent
           sx={{
             flex: 1,
@@ -153,7 +140,6 @@ const VideoCard = ({ video, index }) => {
             p: 2,
           }}
         >
-          {/* Title va description */}
           <Link
             to={`/video/${video.id.videoId}`}
             style={{ textDecoration: "none", flex: 1 }}
@@ -176,7 +162,6 @@ const VideoCard = ({ video, index }) => {
             >
               {video?.snippet?.title}
             </Typography>
-
             <Typography
               variant="body2"
               color="text.secondary"
@@ -192,8 +177,6 @@ const VideoCard = ({ video, index }) => {
               {video?.snippet?.description}
             </Typography>
           </Link>
-
-          {/* Video stats */}
           <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
             {video?.statistics?.viewCount && (
               <Typography variant="caption" color="text.secondary">
@@ -204,8 +187,6 @@ const VideoCard = ({ video, index }) => {
               {moment(video?.snippet?.publishedAt).fromNow()}
             </Typography>
           </Stack>
-
-          {/* Channel info */}
           <Link
             to={`/channel/${video?.snippet?.channelId}`}
             style={{ textDecoration: "none" }}
@@ -252,8 +233,6 @@ const VideoCard = ({ video, index }) => {
               </Stack>
             </Stack>
           </Link>
-
-          {/* Like button va more options */}
           <Stack
             direction="row"
             justifyContent="space-between"
@@ -271,7 +250,6 @@ const VideoCard = ({ video, index }) => {
             >
               {liked ? <Favorite /> : <FavoriteBorder />}
             </IconButton>
-
             <IconButton
               size="small"
               sx={{

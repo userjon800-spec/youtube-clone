@@ -6,12 +6,10 @@ import { ApiService } from "../../service/api-service";
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
-
 const Main = () => {
   let [selectedCatergory, setselectedCatergory] = useState("New");
   let [videos, setVideos] = useState([]);
   let [loading, setLoading] = useState(false);
-
   useEffect(() => {
     let getData = async () => {
       setLoading(true);
@@ -21,13 +19,10 @@ const Main = () => {
           part: 'snippet',
           maxResults: 50
         });
-        
-        // Ma'lumotlarni kechiktirib set qilish (animatsiya uchun)
         setTimeout(() => {
           setVideos(datas.items || []);
           setLoading(false);
         }, 500);
-        
       } catch (error) {
         setLoading(false);
         if (error.response && error.response.status === 429) {
@@ -41,8 +36,6 @@ const Main = () => {
     };
     getData();
   }, [selectedCatergory]);
-
-  // Kategoriya turiga qarab ikonka va rang tanlash
   const getCategoryIcon = () => {
     switch(selectedCatergory.toLowerCase()) {
       case 'new':
@@ -55,13 +48,11 @@ const Main = () => {
         return null;
     }
   };
-
   return (
     <Stack sx={{ 
       background: `linear-gradient(135deg, ${colors.background} 0%, #ffffff 100%)`,
       minHeight: '100vh'
     }}>
-      {/* Kategoriya qismi */}
       <Box sx={{ 
         position: 'sticky', 
         top: '70px', 
@@ -76,8 +67,6 @@ const Main = () => {
           onSelect={setselectedCatergory}
         />
       </Box>
-
-      {/* Video qismi */}
       <Box 
         p={{ xs: 1, sm: 2, md: 3 }} 
         sx={{ 
@@ -93,7 +82,6 @@ const Main = () => {
         }}
       >
         <Container maxWidth="xl">
-          {/* Header qismi */}
           <Fade in={true} timeout={800}>
             <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', gap: 2 }}>
               <Box sx={{ 
@@ -106,7 +94,6 @@ const Main = () => {
               }}>
                 {getCategoryIcon()}
               </Box>
-              
               <Box>
                 <Typography 
                   variant="h3" 
@@ -121,12 +108,10 @@ const Main = () => {
                 >
                   {selectedCatergory}
                 </Typography>
-                
                 <Stack direction="row" spacing={2} alignItems="center">
                   <Typography variant="body1" color="text.secondary">
                     Eng so'nggi videolar
                   </Typography>
-                  
                   <Chip 
                     label={`${videos.length} ta video`} 
                     size="small"
@@ -140,8 +125,6 @@ const Main = () => {
               </Box>
             </Box>
           </Fade>
-
-          {/* Loading animatsiyasi */}
           {loading ? (
             <Box sx={{ 
               display: 'flex', 
@@ -172,15 +155,12 @@ const Main = () => {
               </style>
             </Box>
           ) : (
-            /* Video list */
             <Grow in={!loading} timeout={1000}>
               <Box>
                 <Videos videos={videos} />
               </Box>
             </Grow>
           )}
-
-          {/* Video topilmasa */}
           {!loading && videos.length === 0 && (
             <Box sx={{ 
               display: 'flex', 

@@ -3,13 +3,10 @@ import { Box, CardContent, CardMedia, Typography, Paper, alpha, Chip } from "@mu
 import { Link } from "react-router-dom";
 import { colors } from "../../constants/colors";
 import { motion } from "framer-motion";
-
 const ChannelCard = ({ video, marginTop = "0px" }) => {
   if (!video?.snippet) return null;
-
   const { snippet, statistics } = video;
   const { title, thumbnails } = snippet;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -39,7 +36,6 @@ const ChannelCard = ({ video, marginTop = "0px" }) => {
           style={{ textDecoration: "none" }}
         >
           <Box sx={{ position: "relative", pt: 2 }}>
-            {/* Channel cover (optional) */}
             <Box
               sx={{
                 position: "absolute",
@@ -51,7 +47,6 @@ const ChannelCard = ({ video, marginTop = "0px" }) => {
                 opacity: 0.2,
               }}
             />
-            
             <CardContent
               sx={{
                 display: "flex",
@@ -62,7 +57,6 @@ const ChannelCard = ({ video, marginTop = "0px" }) => {
                 zIndex: 1,
               }}
             >
-              {/* Avatar */}
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
@@ -81,8 +75,6 @@ const ChannelCard = ({ video, marginTop = "0px" }) => {
                   }}
                 />
               </motion.div>
-
-              {/* Channel name */}
               <Typography 
                 variant="h6" 
                 sx={{ 
@@ -103,8 +95,6 @@ const ChannelCard = ({ video, marginTop = "0px" }) => {
                   }} 
                 />
               </Typography>
-
-              {/* Subscriber count */}
               {statistics?.subscriberCount && (
                 <Chip
                   label={`${parseInt(statistics.subscriberCount).toLocaleString()} subscribers`}
@@ -120,8 +110,6 @@ const ChannelCard = ({ video, marginTop = "0px" }) => {
                   }}
                 />
               )}
-
-              {/* View count (optional) */}
               {statistics?.viewCount && (
                 <Typography
                   variant="caption"
@@ -134,8 +122,6 @@ const ChannelCard = ({ video, marginTop = "0px" }) => {
                   {parseInt(statistics.viewCount).toLocaleString()} total views
                 </Typography>
               )}
-
-              {/* Video count badge */}
               {statistics?.videoCount && (
                 <Box
                   sx={{
@@ -159,5 +145,4 @@ const ChannelCard = ({ video, marginTop = "0px" }) => {
     </motion.div>
   );
 };
-
 export default ChannelCard;

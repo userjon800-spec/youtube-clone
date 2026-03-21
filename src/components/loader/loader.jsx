@@ -1,9 +1,13 @@
-import { Box, CircularProgress, Stack, Typography, keyframes } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Stack,
+  Typography,
+  keyframes,
+} from "@mui/material";
 import { colors } from "../../constants/colors";
 import { motion } from "framer-motion";
-import YouTubeIcon from '@mui/icons-material/YouTube';
-
-// Animatsiyalar
+import YouTubeIcon from "@mui/icons-material/YouTube";
 const pulse = keyframes`
   0% {
     transform: scale(1);
@@ -18,7 +22,6 @@ const pulse = keyframes`
     opacity: 1;
   }
 `;
-
 const spin = keyframes`
   0% {
     transform: rotate(0deg);
@@ -27,7 +30,6 @@ const spin = keyframes`
     transform: rotate(360deg);
   }
 `;
-
 export const bounce = keyframes`
   0%, 100% {
     transform: translateY(0);
@@ -36,33 +38,32 @@ export const bounce = keyframes`
     transform: translateY(-20px);
   }
 `;
-
-const Loader = ({ fullScreen = true, text = "Loading...", size = "medium" }) => {
-  // Size variants
+const Loader = ({
+  fullScreen = true,
+  text = "Loading...",
+  size = "medium",
+}) => {
   const sizeMap = {
     small: {
       container: { minHeight: "200px" },
       icon: 40,
       text: "body2",
-      progress: 30
+      progress: 30,
     },
     medium: {
       container: { minHeight: fullScreen ? "100vh" : "400px" },
       icon: 60,
       text: "h6",
-      progress: 40
+      progress: 40,
     },
     large: {
       container: { minHeight: fullScreen ? "100vh" : "600px" },
       icon: 80,
       text: "h5",
-      progress: 50
-    }
+      progress: 50,
+    },
   };
-
   const currentSize = sizeMap[size] || sizeMap.medium;
-
-  // Random loader messages
   const loadingMessages = [
     "Videolar yuklanmoqda...",
     "Kutib turing...",
@@ -73,11 +74,10 @@ const Loader = ({ fullScreen = true, text = "Loading...", size = "medium" }) => 
     "Video sarguzashtlari...",
     "Kontent tayyorlanmoqda...",
     "Marhamat, biroz kuting...",
-    "Yuklash davom etmoqda..."
+    "Yuklash davom etmoqda...",
   ];
-
-  const randomMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
-
+  const randomMessage =
+    loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
   return (
     <Box
       sx={{
@@ -103,9 +103,7 @@ const Loader = ({ fullScreen = true, text = "Loading...", size = "medium" }) => 
           border: `1px solid ${colors.secondary}20`,
         }}
       >
-        {/* Asosiy loader */}
         <Box sx={{ position: "relative", display: "inline-flex" }}>
-          {/* Spinning loader */}
           <CircularProgress
             size={currentSize.progress}
             thickness={4}
@@ -114,8 +112,6 @@ const Loader = ({ fullScreen = true, text = "Loading...", size = "medium" }) => 
               animation: `${spin} 1.5s linear infinite`,
             }}
           />
-          
-          {/* Center icon */}
           <Box
             sx={{
               position: "absolute",
@@ -144,8 +140,6 @@ const Loader = ({ fullScreen = true, text = "Loading...", size = "medium" }) => 
             </motion.div>
           </Box>
         </Box>
-
-        {/* Loading text */}
         <Stack spacing={1} alignItems="center">
           <Typography
             variant={currentSize.text}
@@ -159,8 +153,6 @@ const Loader = ({ fullScreen = true, text = "Loading...", size = "medium" }) => 
           >
             {text || randomMessage}
           </Typography>
-
-          {/* Animated dots */}
           <Stack direction="row" spacing={1}>
             {[0, 1, 2].map((dot) => (
               <motion.div
@@ -188,8 +180,6 @@ const Loader = ({ fullScreen = true, text = "Loading...", size = "medium" }) => 
             ))}
           </Stack>
         </Stack>
-
-        {/* Fun fact or quote (optional) */}
         <Typography
           variant="caption"
           color="text.secondary"
@@ -208,11 +198,11 @@ const Loader = ({ fullScreen = true, text = "Loading...", size = "medium" }) => 
     </Box>
   );
 };
-
-// Variant 2: Simple Loader
 export const SimpleLoader = ({ color = colors.secondary, size = 30 }) => {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <Box
+      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+    >
       <CircularProgress
         size={size}
         sx={{
@@ -223,8 +213,6 @@ export const SimpleLoader = ({ color = colors.secondary, size = 30 }) => {
     </Box>
   );
 };
-
-// Variant 3: Skeleton Loader for cards
 export const CardSkeleton = () => {
   return (
     <Box sx={{ width: "100%" }}>
@@ -272,8 +260,6 @@ export const CardSkeleton = () => {
     </Box>
   );
 };
-
-// Variant 4: Page Loader with logo
 export const PageLoader = () => {
   return (
     <Box
@@ -329,8 +315,6 @@ export const PageLoader = () => {
     </Box>
   );
 };
-
-// Variant 5: Minimal Loader
 export const MinimalLoader = () => {
   return (
     <Box sx={{ display: "flex", justifyContent: "center", p: 3 }}>
@@ -343,38 +327,29 @@ export const MinimalLoader = () => {
     </Box>
   );
 };
-
-// Loader CSS
 const loaderStyles = `
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-
   @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
   }
-
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
   }
-
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
   }
-
   @keyframes glow {
     0%, 100% { box-shadow: 0 0 10px ${colors.secondary}50; }
     50% { box-shadow: 0 0 30px ${colors.secondary}80; }
   }
 `;
-
-// Style component
 export const LoaderStyles = () => (
   <style dangerouslySetInnerHTML={{ __html: loaderStyles }} />
 );
-
 export default Loader;

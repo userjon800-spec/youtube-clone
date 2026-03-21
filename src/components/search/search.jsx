@@ -10,7 +10,6 @@ const Search = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
   let { id } = useParams();
-
   useEffect(() => {
     let getData = async () => {
       setLoading(true);
@@ -20,13 +19,10 @@ const Search = () => {
           part: 'snippet',
           maxResults: 50
         });
-        
-        // Animatsiya uchun kechiktirish
         setTimeout(() => {
           setVideos(datas.items || []);
           setLoading(false);
         }, 500);
-        
       } catch (error) {
         setLoading(false);
         console.log(error);
@@ -34,10 +30,7 @@ const Search = () => {
     };
     getData();
   }, [id]);
-
-  // Skeleton loader uchun
   const skeletonArray = [1,2,3,4,5,6,7,8];
-
   return (
     <Box 
       sx={{ 
@@ -47,7 +40,6 @@ const Search = () => {
       }}
     >
       <Container maxWidth="xl">
-        {/* Header qismi */}
         <Fade in={true} timeout={800}>
           <Paper 
             elevation={0}
@@ -61,7 +53,6 @@ const Search = () => {
               overflow: 'hidden'
             }}
           >
-            {/* Background icon */}
             <YouTubeIcon 
               sx={{ 
                 position: 'absolute',
@@ -73,7 +64,6 @@ const Search = () => {
                 zIndex: 0
               }} 
             />
-            
             <Box sx={{ position: 'relative', zIndex: 1 }}>
               <Typography 
                 variant="h3" 
@@ -95,7 +85,6 @@ const Search = () => {
                   "{id}"
                 </span>
               </Typography>
-              
               <Stack direction="row" spacing={2} alignItems="center">
                 <Chip 
                   label={`${videos.length} videos found`}
@@ -115,8 +104,6 @@ const Search = () => {
             </Box>
           </Paper>
         </Fade>
-
-        {/* Loading skeleton */}
         {loading && (
           <Grow in={loading} timeout={500}>
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 3 }}>
@@ -130,15 +117,12 @@ const Search = () => {
             </Box>
           </Grow>
         )}
-
-        {/* Video list */}
         {!loading && (
           <Fade in={!loading} timeout={1000}>
             <Box>
               {videos.length > 0 ? (
                 <Videos videos={videos} />
               ) : (
-                // Empty state
                 <Box 
                   sx={{ 
                     display: 'flex', 
